@@ -2,13 +2,14 @@ package app.resource
 
 import javax.ws.rs.GET
 import javax.ws.rs.Path
-import javax.ws.rs.Produces
-import javax.ws.rs.core.MediaType
 
 @Path("/ping")
 class PingResource {
 
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
 	fun ping(): String = "pong";
+
+	@GET
+	@Path("/unhealthy")
+	fun pingUnhealthy(): String = if (Math.random() <= 0.1) throw Exception("unhealthy") else ping();
 }
