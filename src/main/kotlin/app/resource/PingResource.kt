@@ -2,14 +2,15 @@ package app.resource
 
 import javax.ws.rs.GET
 import javax.ws.rs.Path
+import javax.ws.rs.core.Response
 
 @Path("/ping")
 class PingResource {
 
 	@GET
-	fun ping(): String = "pong";
+	fun ping(): Response = Response.ok("pong").build();
 
 	@GET
 	@Path("/unhealthy")
-	fun pingUnhealthy(): String = if (Math.random() <= 0.1) throw Exception("unhealthy") else ping();
+	fun pingUnhealthy(): Response = if (Math.random() <= 0.1) Response.serverError().build() else ping();
 }
