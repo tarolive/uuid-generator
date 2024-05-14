@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response
 class PingResource {
 
 	@GET
-	fun ping(): Response = Response.ok("pong").build();
+	fun ping(): Response = Response.ok("pong!!!!!!").build();
 
 	@GET
 	@Path("/unhealthy")
